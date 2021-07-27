@@ -5,6 +5,7 @@ function FetchEmployees() {
 	const [employees, setEmployees] = useState([]);
 
 	useEffect(() => {
+		// fetch data from api
 		axios
 			.get('http://dummy.restapiexample.com/api/v1/employees')
 			.then(function (response) {
@@ -13,9 +14,10 @@ function FetchEmployees() {
 			.catch((error) => console.log(error));
 	}, []);
 
+	// return employee details
 	const listItems = employees.map((item) => {
 		return (
-			<li key={item.id}>
+			<li className='employee' key={item.id}>
 				<h2 key={item.employee_name}>Name : {item.employee_name}</h2>
 				<p key={item.employee_salary}>Salary : {item.employee_salary}</p>
 				<p key={item.employee_age}>Age : {item.employee_age}</p>
@@ -24,9 +26,9 @@ function FetchEmployees() {
 	});
 
 	return (
-		<div>
+		<div className='main-container'>
 			<h1>Employees</h1>
-			<ul>{listItems}</ul>
+			<ul className='employees'>{listItems}</ul>
 		</div>
 	);
 }
